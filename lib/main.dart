@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'screens/cart_screen.dart';
+import 'screens/welcome_screen.dart';
 
 void main() {
   runApp(const MainApp());
@@ -13,7 +14,7 @@ class MainApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return const MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: CartScreen(),
+      home: WelcomeScreen(),
     );
   }
 }
