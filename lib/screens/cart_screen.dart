@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../widgets/custom_alert_dialog_widget.dart';
 import '../widgets/custom_app_bar_widget.dart';
 import '../widgets/custom_cart_container_widget.dart';
 import '../widgets/text/custom_rich_text_widget.dart';
@@ -9,12 +10,12 @@ class CartScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      backgroundColor: Color(0xffFAF4EE),
-      appBar: CustomAppBarWidget(),
+    return Scaffold(
+      backgroundColor: const Color(0xffFAF4EE),
+      appBar: const CustomAppBarWidget(),
       body: SafeArea(
         child: Padding(
-          padding: EdgeInsets.only(
+          padding: const EdgeInsets.only(
             left: 20,
             right: 20,
           ),
@@ -22,19 +23,30 @@ class CartScreen extends StatelessWidget {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
-                Align(alignment: Alignment.centerLeft, child: CustomRichTextWidget()),
-                SizedBox(
+                const Align(
+                    alignment: Alignment.centerLeft,
+                    child: CustomRichTextWidget()),
+                const SizedBox(
                   height: 70,
                 ),
-                CustomCartContainerWidget(),
-                Padding(
+                CustomCartContainerWidget(onAddPressed: () {
+                  
+                },
+                onRemovePressed:  () {
+              showDialog(
+                  context: context,
+                  builder: (context) {
+                    return const CustomAlertDialogWidget();
+                  });
+            },),
+                const Padding(
                   padding: EdgeInsets.only(top: 400),
                   child: Divider(
                     color: Colors.black,
                     thickness: 1,
                   ),
                 ),
-                Row(
+                const Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(

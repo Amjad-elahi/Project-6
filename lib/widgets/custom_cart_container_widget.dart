@@ -2,14 +2,21 @@ import 'package:flutter/material.dart';
 import 'package:project6/widgets/button/custom_elevated_button_widget.dart';
 
 class CustomCartContainerWidget extends StatelessWidget {
-  const CustomCartContainerWidget({super.key});
-
+  const CustomCartContainerWidget({super.key, this.onAddPressed, this.onRemovePressed});
+  final Function()? onAddPressed;
+  final Function()? onRemovePressed;
   @override
   Widget build(BuildContext context) {
     return Container(
       height: 101,
       width: 390,
       decoration: BoxDecoration(
+          boxShadow: [
+            BoxShadow(
+                blurRadius: 4,
+                offset: const Offset(0, 4),
+                color: const Color(0xff000000).withOpacity(0.25))
+          ],
           color: const Color(0xffFFFFFF),
           borderRadius: BorderRadius.circular(7),
           border: Border.all(color: const Color(0xffB98875))),
@@ -43,78 +50,7 @@ class CustomCartContainerWidget extends StatelessWidget {
           ),
           CustomElevatedButtonWidget(
             icon: Icons.remove,
-            onPressed: () {
-              showDialog(
-                  context: context,
-                  builder: (context) {
-                    return AlertDialog(
-                      backgroundColor: Color(0xffFFFFFF),
-                      shape: OutlineInputBorder(
-                          borderSide: BorderSide(color: Color(0xffB98875)),
-                          borderRadius: BorderRadius.circular(7)),
-                      title: SizedBox(
-                        height: 120,
-                        width: 320,
-                        child: RichText(
-                            text: const TextSpan(children: [
-                          TextSpan(
-                              text: "Are you sure you want to delete",
-                              style:
-                                  TextStyle(color: Colors.black, fontSize: 24)),
-                          TextSpan(
-                              text: " Espresso",
-                              style: TextStyle(
-                                  color: Color(0xffB98875), fontSize: 24)),
-                          TextSpan(
-                              text: " from cart",
-                              style:
-                                  TextStyle(color: Colors.black, fontSize: 24))
-                        ])),
-                      ),
-                      actionsAlignment: MainAxisAlignment.spaceEvenly,
-                      actions: [
-                        ElevatedButton(
-                            style: const ButtonStyle(
-                                foregroundColor:
-                                    WidgetStatePropertyAll(Color(0xffB98875)),
-                                minimumSize:
-                                    WidgetStatePropertyAll(Size(130, 50)),
-                                shape: WidgetStatePropertyAll(
-                                    RoundedRectangleBorder(
-                                        side: BorderSide(
-                                            width: 2, color: Color(0xffB98875)),
-                                        borderRadius: BorderRadius.all(
-                                            Radius.circular(24)))),
-                                backgroundColor:
-                                    WidgetStatePropertyAll(Color(0xffffffff))),
-                            onPressed: () {},
-                            child: const Text(
-                              "Yes",
-                              style: TextStyle(fontSize: 20),
-                            )),
-                        ElevatedButton(
-                            style: const ButtonStyle(
-                                foregroundColor:
-                                    WidgetStatePropertyAll(Color(0xffB98875)),
-                                minimumSize:
-                                    WidgetStatePropertyAll(Size(130, 50)),
-                                shape: WidgetStatePropertyAll(
-                                    RoundedRectangleBorder(
-                                        side: BorderSide(
-                                            width: 2, color: Color(0xffB98875)),
-                                        borderRadius: BorderRadius.all(
-                                            Radius.circular(24)))),
-                                backgroundColor:
-                                    WidgetStatePropertyAll(Color(0xffffffff))),
-                            onPressed: () {},
-                            child: const Text(
-                              "No",
-                              style: TextStyle(fontSize: 20),
-                            )),
-                      ],
-                    );
-                  });
-            },
+            onPressed: onRemovePressed
           ),
           const Text(
             "1",
@@ -122,7 +58,7 @@ class CustomCartContainerWidget extends StatelessWidget {
           ),
           CustomElevatedButtonWidget(
             icon: Icons.add,
-            onPressed: () {},
+            onPressed: onAddPressed,
           )
         ],
       ),
