@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class CustomRichText extends StatelessWidget {
-  const CustomRichText({super.key});
+class CustomRichTextWidget extends StatelessWidget {
+  const CustomRichTextWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
